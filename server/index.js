@@ -15,32 +15,33 @@ app.use(bodyParser.json());
 app.use(cors({
   origin: [
     'http://localhost:3000', // for development
-         // optional render test deployment
+    // optional render test deployment URLs can go here
   ],
   credentials: true,
 }));
 
-
 const PORT = process.env.PORT || 5000;
-const MONGO_URI = "mongodb+srv://amanmongo:5soH4Z2Ety6EYTo9@cluster0.umrf0km.mongodb.net/event_subscriptions?retryWrites=true&w=majority";
+const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://amanmongo:5soH4Z2Ety6EYTo9@cluster0.umrf0km.mongodb.net/event_subscriptions?retryWrites=true&w=majority";
 const SCRAPE_INTERVAL = "*/30 * * * *"; // every 30 minutes
 
 let cachedEvents = [];
 
-// Connect to MongoDB Atlas
-mongoose.connect(MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => {
-  console.log(" Connected to MongoDB Atlas");
-}).catch((err) => {
-  console.error(" MongoDB connection error:", err.message);
-});
+// Connect to MongoDB Atlas (removed deprecated options)
+mongoose.connect(MONGO_URI)
+  .then(() => {
+    console.log("Connected to MongoDB Atlas");
+  })
+  .catch((err) => {
+    console.error("MongoDB connection error:", err.message);
+  });
 
 // Scrape function
 async function scrapeEvents() {
   try {
-    const browser = await puppeteer.launch({ headless: "new" });
+    const browser = await puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
     const page = await browser.newPage();
 
     await page.goto("https://www.eventbrite.com.au/d/australia--sydney/all-events/", {
@@ -81,10 +82,10 @@ async function scrapeEvents() {
 
     await browser.close();
     cachedEvents = events;
-    console.log(" Events scraped and cached");
+    console.log("Events scraped and cached");
 
   } catch (error) {
-    console.error(" Scraping error:", error.message);
+    console.error("Scraping error:", error.message);
   }
 }
 
@@ -111,11 +112,11 @@ app.post("/api/subscribe", async (req, res) => {
     const newSubscriber = new Subscriber({ email, eventUrl });
     await newSubscriber.save();
 
-    console.log(` New subscriber: ${email} for ${eventUrl}`);
+    console.log(`New subscriber: ${email} for ${eventUrl}`);
     res.json({ success: true });
 
   } catch (error) {
-    console.error(" Subscription error:", error.message);
+    console.error("Subscription error:", error.message);
     res.status(500).json({ error: "Failed to subscribe" });
   }
 });
@@ -132,5 +133,5 @@ app.get("/api/subscribers", async (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(` Server running at http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });
