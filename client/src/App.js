@@ -10,7 +10,7 @@ function App() {
 
   const fetchEvents = () => {
     setLoading(true);
-    axios.get("https://event-subscription-scraper-api.onrender.com/api/events")
+    axios.get("http://localhost:5000/api/events")
       .then(res => {
         setEvents(res.data);
         setLoading(false);
@@ -27,7 +27,7 @@ function App() {
   };
 
   const handleSubmitEmail = () => {
-    axios.post("https://event-subscription-scraper-api.onrender.com/api/subscribe", {
+    axios.post("http://localhost:5000/api/subscribe", {
       email,
       eventUrl: selectedUrl
     }).then(() => {
