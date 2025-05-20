@@ -21,7 +21,7 @@ app.use(cors({
 }));
 
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 const MONGO_URI = "mongodb+srv://amanmongo:5soH4Z2Ety6EYTo9@cluster0.umrf0km.mongodb.net/event_subscriptions?retryWrites=true&w=majority";
 const SCRAPE_INTERVAL = "*/30 * * * *"; // every 30 minutes
 
