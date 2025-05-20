@@ -113,6 +113,9 @@ npm start
 The server will run at `http://localhost:5000`.
 
 ---
+---
+once client and server started click on the scrap button to c=scrap the events 
+---
 
 ## 🧪 API Endpoints
 
