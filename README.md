@@ -22,6 +22,27 @@ This Node.js server scrapes upcoming events from Eventbrite (Sydney, Australia),
 
 ---
 
+
+---
+
+## Approach
+
+- Choosing Node.js + Express for backend
+
+- Using Puppeteer for scraping Eventbrite’s event data
+
+- Storing data in MongoDB Atlas
+
+- Scheduling scraping every 30 mins with node-cron
+
+- Enabling CORS for multiple frontends
+
+- Creating API endpoints for events and subscriptions
+
+
+
+---
+
 ## 🔧 Setup Instructions
 
 ### 1. Clone the repository
@@ -31,10 +52,11 @@ git clone https://github.com/your-username/event-subscription-api.git
 cd event-subscription-api
 ```
 
-### 2. Install dependencies
+### 2. Install dependencies => cd client
 
 ```bash
 npm install
+npm start
 ```
 
 ### 3. Create `.env` file
@@ -48,9 +70,10 @@ PORT=5000
 
 > Replace `your_mongo_connection_string` with your MongoDB Atlas connection string.
 
-### 4. Start the server
+### 4. Start the server => cd server 
 
 ```bash
+npm install
 npm start
 ```
 
@@ -91,11 +114,9 @@ The server accepts requests from the following origins:
 ## 📂 Project Structure
 
 ```
-.
-├── models/
-│   └── Subscriber.js
-├── .env
-├── server.js
+event-subscription-platform/
+├── client/        # React frontend
+├── server/        # Node.js backend
 └── README.md
 ```
 
