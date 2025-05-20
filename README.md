@@ -87,7 +87,6 @@ npm start
 
 ### 3. update mongodb in case if want to use yours 
 
-Create a `.env` file in the root directory and add the following variables:
 
 ```env
 MONGO_URI=your_mongo_connection_string
