@@ -142,8 +142,7 @@ Returns all subscribers from the database.
 The server accepts requests from the following origins:
 
 - `http://localhost:3000`
-- `https://tasklist-frontend.onrender.com`
-- `https://tasklist-nodejs-tasklist-frontend.onrender.com`
+
 
 ---
 
