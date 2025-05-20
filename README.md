@@ -67,6 +67,11 @@ This Node.js server scrapes upcoming events from Eventbrite (Sydney, Australia),
 
 ![image](https://github.com/user-attachments/assets/951a5235-43ee-439e-bb7e-f5443fa52498)
 
+<br>
+
+![image](https://github.com/user-attachments/assets/b860f5fa-a086-41a8-bec0-6289af5f2b70)
+
+
 ---
 
 ## 🔧 Setup Instructions
