@@ -82,8 +82,8 @@ This Node.js server scrapes upcoming events from Eventbrite (Sydney, Australia),
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/event-subscription-api.git
-cd event-subscription-api
+git clone https://github.com/AMANKUMAR22MCA/Event-Subscription-Scraper-API.git
+cd Event-Subscription-Scraper-API
 ```
 
 ### 2. Install dependencies => cd client
